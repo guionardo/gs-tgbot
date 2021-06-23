@@ -1,0 +1,13 @@
+[Unit]
+Description=Telegram Bot
+After=multi-user.target
+Conflicts=getty@tty1.service
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/home/pi/go/telegram_bot/main
+StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target
