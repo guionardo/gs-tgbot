@@ -1,6 +1,7 @@
 package behaviors
 
 import (
+	"log"
 	"os/exec"
 )
 
@@ -8,10 +9,12 @@ type RebootBehavior struct {
 }
 
 func (i *RebootBehavior) DoCommand(command string) string {
-	out := exec.Command("shutdown", "-r now")
+	err := exec.Command("shutdown", "-r now").Run()
+	if err!=nil{
+		log.Printf("Error on rebooting: %s",err.Error())
+	}
 
-	defer out.Run()
-	return "Rebooting down..."
+	return "Rebooting..."
 }
 
 func (i *RebootBehavior) Description() string {
