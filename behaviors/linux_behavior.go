@@ -15,3 +15,9 @@ func (i *LinuxBehavior) DoCommand(command string) string {
 	}
 	return string(out)
 }
+func (i *LinuxBehavior) Description() string {
+	return "Shows linux info"
+}
+func (i *LinuxBehavior)Command() string{
+	return "linux"
+}

@@ -19,3 +19,11 @@ func (i *IpBehavior) DoCommand(command string) string {
 
 	return localAddr.IP.String()
 }
+
+func (i *IpBehavior) Description() string {
+	return "Shows IP"
+}
+
+func (i *IpBehavior) Command() string{
+	return "ip"
+}

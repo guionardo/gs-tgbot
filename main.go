@@ -23,36 +23,34 @@ func main() {
 	updates, err := bot.GetUpdatesChan(u)
 
 	if err != nil {
-
+		log.Printf("Error getting updates channel: %s", err)
 	}
 
 	var runner = behaviors.InitRunner()
 
-	runner.AddBehavior("ip", &behaviors.IpBehavior{})
-	runner.AddBehavior("linux", &behaviors.LinuxBehavior{})
-	runner.AddBehavior("mem", &behaviors.MemoryBehavior{})
+	runner.AddBehavior(&behaviors.IpBehavior{})
+	runner.AddBehavior(&behaviors.LinuxBehavior{})
+	runner.AddBehavior(&behaviors.MemoryBehavior{})
+	runner.AddBehavior(&behaviors.RebootBehavior{})
+	runner.AddBehavior(&behaviors.ShutdownBehavior{})
+	runner.AddBehavior(&behaviors.LastCommitBehavior{})
 	for update := range updates {
 		if update.Message == nil { // ignore any non-Message Updates
 			continue
 		}
 
-		log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
+		log.Printf("[%s] %s\n", update.Message.From.UserName, update.Message.Text)
 		var msg tgbotapi.MessageConfig
 		var response = runner.Run(update.Message.Text)
 		if len(response) == 0 {
 			response = update.Message.Text
 		}
 		msg = tgbotapi.NewMessage(update.Message.Chat.ID, response)
-		// if update.Message.Text == "ip" {
-		// 	msg = ResponseIP(update.Message.Chat.ID)
-		// } else if update.Message.Text == "mem" {
-		// 	msg = ResponseMem(update.Message.Chat.ID)
-		// } else {
-		// 	msg = tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
-		// }
-
 		msg.ReplyToMessageID = update.Message.MessageID
 
-		bot.Send(msg)
+		message, err := bot.Send(msg)
+		if err != nil {
+			log.Printf("Error sending message: %s - %s", err, message.Text)
+		}
 	}
 }

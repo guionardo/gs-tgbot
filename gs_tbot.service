@@ -6,7 +6,7 @@ Conflicts=getty@tty1.service
 [Service]
 Type=simple
 User=pi
-ExecStart=/home/pi/go/telegram_bot/main
+ExecStart=/home/pi/go/gs-tgbot/main
 StandardInput=tty-force
 
 [Install]
