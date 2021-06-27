@@ -34,6 +34,7 @@ func main() {
 	runner.AddBehavior(&behaviors.RebootBehavior{})
 	runner.AddBehavior(&behaviors.ShutdownBehavior{})
 	runner.AddBehavior(&behaviors.LastCommitBehavior{})
+	runner.AddBehavior(&behaviors.UpdatingBehavior{})
 	for update := range updates {
 		if update.Message == nil { // ignore any non-Message Updates
 			continue
