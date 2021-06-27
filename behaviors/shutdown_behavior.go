@@ -9,12 +9,12 @@ type ShutdownBehavior struct {
 }
 
 func (i *ShutdownBehavior) DoCommand(command string) string {
-	err := exec.Command("shutdown", "-h", "now").Run()
+	err := exec.Command("shutdown", "-h", "+1").Run()
 	if err != nil {
 		return fmt.Sprintf("Error on shutdown: %s", err.Error())
 	}
 
-	return "Shutting down..."
+	return "Shutting down in one minute..."
 }
 
 func (i *ShutdownBehavior) Description() string {

@@ -10,10 +10,11 @@ type UpdatingBehavior struct{}
 
 func (i *UpdatingBehavior) DoCommand(command string) string {
 	gitPath := path.Join(ProgramPath(), ".git")
-	_, err := os.Stat("temp")
-	if os.IsNotExist(err) {
+
+	if _, err := os.Stat(gitPath); os.IsNotExist(err) {
 		return fmt.Sprintf("Execution has no source info (.git): %s", gitPath)
 	}
+
 	if !NeedsUpdate() {
 		return fmt.Sprintf("No needs for update 🆗")
 	}
