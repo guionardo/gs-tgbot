@@ -9,7 +9,7 @@ type ShutdownBehavior struct {
 }
 
 func (i *ShutdownBehavior) DoCommand(command string) string {
-	err := exec.Command("shutdown", "-h", "+1").Run()
+	err := exec.Command("sudo","shutdown", "-h", "+1").Run()
 	if err != nil {
 		return fmt.Sprintf("Error on shutdown: %s", err.Error())
 	}

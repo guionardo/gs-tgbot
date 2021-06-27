@@ -9,7 +9,7 @@ type RebootBehavior struct {
 }
 
 func (i *RebootBehavior) DoCommand(command string) string {
-	err := exec.Command("shutdown", "-r +1").Run()
+	err := exec.Command("sudo","shutdown", "-r +1").Run()
 	if err != nil {
 		return fmt.Sprintf("Error on rebooting: %s", err.Error())
 	}
