@@ -2,6 +2,8 @@
 
 Guiosoft Telegram Bot
 
+[![Go Release](https://github.com/guionardo/gs-tgbot/actions/workflows/release.yml/badge.svg)](https://github.com/guionardo/gs-tgbot/actions/workflows/release.yml)
+
 
 ## Links
 
