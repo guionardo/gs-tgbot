@@ -9,3 +9,9 @@ Guiosoft Telegram Bot
 
 * https://github.com/go-telegram-bot-api/telegram-bot-api
 * https://tecadmin.net/setup-autorun-python-script-using-systemd/
+
+## Features
+
+* [ ] Monitoramento de serviços (host, tipo de teste [ping, socket/porta])
+* [ ] Monitoramento de dispositivos na rede local (MAC, IP, hostname)
+* [ ] Registro de links para ler depois (persistir os links, com títulos e perguntar via mensagem se o link foi lido, arquivar, ou excluir)
